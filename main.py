@@ -6,8 +6,12 @@ from tensorflow import keras
 import task 
 import logger
 import model
+
 import predict
 import os
+import numpy as np
+
+import matplotlib.pyplot as plt
 
 class main:
     def __init__(self,file):
@@ -19,18 +23,20 @@ class main:
         files=os.listdir()
         if "mymodel" in files:
             p=predict.predict_class(log)
-            img=p.predict()
+            img=p.img_process()
             m = keras.models.load_model('mymodel')
             pred=m.predict_classes(img)[0]
             self.log_writer.log(self.log_path,"Prediction is:"+str(pred))
         else:
             model1=model.model(log)
             model_fit=model1.model(X_test,X_train,Y_test,Y_train)
-            p=predict.predict(log)
-            img=p.predict()
+            p=predict.predict_class(log)
+            img=p.img_process()
             m = keras.models.load_model('mymodel')
             pred=m.predict_classes(img)[0]
             self.log_writer.log(self.log_path,"Prediction is:"+str(pred))
+
+    
         
 
 log=open('logg.txt','w+')

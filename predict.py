@@ -9,7 +9,7 @@ class predict_class:
         self.log_path=file
         self.log_writer=logger.App_Logger()
 
-    def predict(self):
+    def img_process(self):
         size = 28,28
         image1="custom.png"
         im = Image.open(image1)
@@ -21,4 +21,5 @@ class predict_class:
         img = np.reshape(img,(1, 28, 28, 1))
         self.log_writer.log(self.log_path,"Prediction_shape:"+str(img.shape))
         return img 
-
+    
+    
