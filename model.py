@@ -17,37 +17,37 @@ class model:
 
     def model(self,X_test,X_train,Y_test,Y_train):
         model = Sequential()
-        model.add(Conv2D(32, 3, activation='relu', input_shape=(28,28,1)))
+        model.add(Conv2D(32, 3, activation='relu', input_shape=(28,28,1))) #26X26X32
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(16, 3, activation='relu',padding="same")) #24
+        model.add(Conv2D(16, 3, activation='relu',padding="same")) #26X26X16
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(8,3, activation='relu')) #24
+        model.add(Conv2D(8,3, activation='relu')) #24X24X8
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(8, 3, activation='relu',padding="same")) #24
-        model.add(MaxPooling2D(pool_size=(2, 2))) #12
+        model.add(Conv2D(8, 3, activation='relu',padding="same")) #24X24X8
+        model.add(MaxPooling2D(pool_size=(2, 2))) #12X12X8
 
-        model.add(Conv2D(8,3, activation='relu',padding="same")) #24
+        model.add(Conv2D(8,3, activation='relu',padding="same")) #12X12X8
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(8,3, activation='relu')) #24
+        model.add(Conv2D(8,3, activation='relu')) #10X10X8
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(8, 3, activation='relu',padding="same")) #24
-        model.add(MaxPooling2D(pool_size=(2, 2))) #12
+        model.add(Conv2D(8, 3, activation='relu',padding="same")) #10X10X8
+        model.add(MaxPooling2D(pool_size=(2, 2))) #5X5X8
 
-        model.add(Conv2D(8,3, activation='relu')) #24
+        model.add(Conv2D(8,3, activation='relu')) #3X3X8
         model.add(BatchNormalization())
         model.add(Dropout(0.1))
 
-        model.add(Conv2D(10, 3))
+        model.add(Conv2D(10, 3))#1X1X10
 
         model.add(Flatten())
         model.add(Activation('softmax'))
